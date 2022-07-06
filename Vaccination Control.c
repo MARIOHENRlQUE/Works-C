@@ -25,8 +25,8 @@ void main(){
 	int valid=0, i=0;
 	bool valid2 = true, valid3 = true;
 	limparBufferDoBanco();
-  limparTela();
-	printf("========================CONTROLE DA VACINA«√O========================\n");
+  	limparTela();
+	printf("========================CONTROLE DA VACINA√á√ÉO========================\n");
 	do{
 		if(valid2 == false){
 			printf("\n");
@@ -49,11 +49,11 @@ void main(){
 			break;
 			default:
 				limparTela();
-				printf("Os comandos validos no menu s„o apenas (1)(2)(3)(4)\n");
+				printf("Os comandos validos no menu s√£o apenas (1)(2)(3)(4)\n");
 				valid3 = false;
     	}
 		valid2 = false;
-	//CondiÁ„o criada para que o usuario n„o digite outras telas sem ser o 1,2,3,4 no menu do algoritmo.
+	//Condi√ß√£o criada para que o usuario n√£o digite outras telas sem ser o 1,2,3,4 no menu do algoritmo.
 	}while(valid!=4 || valid3 == true);
 	if(valid==4){
 		limparTela();
@@ -70,15 +70,15 @@ void limparBufferDoBanco(void){
 		banco[i].numeroDoLote = 0;
 	}
 }
-//FunÁ„o pra limpar tela. Obs: clear linux, cls em windows.
+//Fun√ß√£o pra limpar tela. Obs: clear linux, cls em windows.
 void limparTela(void){
 	system("cls");
 }
-//FunÁ„o limpar buffer
+//Fun√ß√£o limpar buffer
 void limparbuffer(void){
 	fflush(stdin);
 }
-//FunÁ„o limpar buffer em linux. Obs: Se for rodar o codigo em linux, (comentar esse comando __fpurge) que est· dentro da funÁ„o.
+//Fun√ß√£o limpar buffer em linux. Obs: Se for rodar o codigo em linux, (comentar esse comando __fpurge) que est√° dentro da fun√ß√£o.
 void limparbufferlinux(void){
 	//__fpurge(stdin);
 }
@@ -86,33 +86,33 @@ void limparbufferlinux(void){
 //Menu para controle do algoritmo
 int criandoMenu(int x){
 	printf("1 - Cadastrar Vacina\n");
-	printf("2 - Listar AplicaÁıes\n");
+	printf("2 - Listar Aplica√ß√µes\n");
 	printf("3 - Consultar por CPF\n");
 	printf("4 - Sair\n");
 	scanf("%d", &x);
 	fflush(stdin);
 	return x;
 }
-//Rotina 1 do menu do algoritmo respons·vel por realizar os cadastros e alocar todos no vetor de structs global que est· servindo como banco. 
+//Rotina 1 do menu do algoritmo respons√°vel por realizar os cadastros e alocar todos no vetor de structs global que est√° servindo como banco. 
 struct paciente cadastro(struct paciente x){
 	int i;
 	char compare[17]="123.123.123-12";
 	bool valid = true, valid2 = true, valid3 = true;
 	printf("Digite o nome do paciente completo:\n");
-  limparbufferlinux();
+  	limparbufferlinux();
 	gets(x.nome);
 	limparbuffer();
 	printf("\n");
 	printf("Digite seu cpf:\n");
-  limparbufferlinux();
+  	limparbufferlinux();
 	gets(x.cpf);
 	limparbuffer();
 	printf("\n");
-	//Daqui atÈ o final da estrutura de repitiÁ„o for irei criar varias validaÁıes para minimizar riscos de bugs que o algoritmo possa criar em contato com o usuario.
+	//Daqui at√© o final da estrutura de repiti√ß√£o for irei criar varias valida√ß√µes para minimizar riscos de bugs que o algoritmo possa criar em contato com o usuario.
 	while(x.cpf[3]!=compare[3] || strlen(x.cpf)>14){
 		printf("Escreva o cpf com os pontos corretos, modelo aceito pelo sistema(###.###.###-##)\n");
 		printf("Digite seu cpf:\n");
-    limparbufferlinux();
+    		limparbufferlinux();
 		gets(x.cpf);
 		limparbuffer();
 		limparTela();
@@ -120,7 +120,7 @@ struct paciente cadastro(struct paciente x){
 	while(x.cpf[7]!=compare[7] || strlen(x.cpf)>14){
 		printf("Escreva o cpf com os pontos corretos, modelo aceito pelo sistema(###.###.###-##)\n");
 		printf("Digite seu cpf:\n");
-    limparbufferlinux();
+    		limparbufferlinux();
 		gets(x.cpf);
 		limparbuffer();
 		limparTela();
@@ -128,7 +128,7 @@ struct paciente cadastro(struct paciente x){
 	while(x.cpf[11]!=compare[11] || strlen(x.cpf)>14){
 		printf("Escreva o cpf com os pontos corretos, modelo aceito pelo sistema(###.###.###-##)\n");
 		printf("Digite seu cpf:\n");
-    limparbufferlinux();
+    		limparbufferlinux();
 		gets(x.cpf);
 		limparbuffer();
 		limparTela();
@@ -136,9 +136,9 @@ struct paciente cadastro(struct paciente x){
 	for(i=0;i<99999;i++){
 		if((strlen(x.cpf)>14 || strcmp(banco[i].cpf, x.cpf)==0 || x.cpf[3]!=compare[3]) && valid==true){
 			while((strlen(x.cpf)>14 || strcmp(banco[i].cpf, x.cpf)==0 || x.cpf[3]!=compare[3]) && valid==true){
-				printf("CPF J¡ CADASTRADO OU EST¡ NO FORMATO INCORRETO SEM AS PONTUA«’ES. FORMATO ACEITO PELO SISTEMA(###.###.###-##)\n");
+				printf("CPF J√Å CADASTRADO OU EST√Å NO FORMATO INCORRETO SEM AS PONTUA√á√ïES. FORMATO ACEITO PELO SISTEMA(###.###.###-##)\n");
 				printf("Digite seu cpf:\n");
-        limparbufferlinux();
+        			limparbufferlinux();
 				gets(x.cpf);
 				limparbuffer();
 				valid = false;
@@ -147,9 +147,9 @@ struct paciente cadastro(struct paciente x){
 		}else{
 			if((strlen(x.cpf)>14 || strcmp(banco[i].cpf, x.cpf)==0 || x.cpf[7]!=compare[7]) && valid2==true){
 				while((strlen(x.cpf)>14 || strcmp(banco[i].cpf, x.cpf)==0 || x.cpf[7]!=compare[7]) && valid2==true){
-					printf("CPF J¡ CADASTRADO OU EST¡ NO FORMATO INCORRETO SEM AS PONTUA«’ES. FORMATO ACEITO PELO SISTEMA(###.###.###-##)\n");
+					printf("CPF J√Å CADASTRADO OU EST√Å NO FORMATO INCORRETO SEM AS PONTUA√á√ïES. FORMATO ACEITO PELO SISTEMA(###.###.###-##)\n");
 					printf("Digite seu cpf:\n");
-          limparbufferlinux();
+          				limparbufferlinux();
 					gets(x.cpf);
 					limparbuffer();
 					valid2 = false;
@@ -158,9 +158,9 @@ struct paciente cadastro(struct paciente x){
 			}else{
 				if((strlen(x.cpf)>14 || strcmp(banco[i].cpf, x.cpf)==0 || x.cpf[11]!=compare[11]) && valid3==true){
 					while((strlen(x.cpf)>14 || strcmp(banco[i].cpf, x.cpf)==0 || x.cpf[11]!=compare[11]) && valid3==true){
-						printf("CPF J¡ CADASTRADO OU EST¡ NO FORMATO INCORRETO SEM AS PONTUA«’ES. FORMATO ACEITO PELO SISTEMA(###.###.###-##)\n");
+						printf("CPF J√Å CADASTRADO OU EST√Å NO FORMATO INCORRETO SEM AS PONTUA√á√ïES. FORMATO ACEITO PELO SISTEMA(###.###.###-##)\n");
 						printf("Digite seu cpf:\n");
-            limparbufferlinux();
+            					limparbufferlinux();
 						gets(x.cpf);
 						limparbuffer();
 						valid3 = false;
@@ -175,7 +175,7 @@ struct paciente cadastro(struct paciente x){
 	scanf("%s", x.vacina);
 	limparbuffer();
 	printf("\n");
-	//Informei ao sistema que queria receber as datas e apÛs receber, j· armazenar elas com as barras.
+	//Informei ao sistema que queria receber as datas e ap√≥s receber, j√° armazenar elas com as barras.
 	printf("Digite a data atual(Em formato MM/DD/AAAA):\n");
 	limparbufferlinux();
 	scanf("%d/%d/%d", &x.dia, &x.mes, &x.ano);
@@ -183,7 +183,7 @@ struct paciente cadastro(struct paciente x){
 	while(x.mes>12 || x.mes==0 || x.dia>31 || x.dia==0 || x.ano==0){
 		printf("Data invalida!!\n");
 		printf("Digite a data atual(Em formato DD/MM/AAAA):\n");
-    limparbufferlinux();
+    		limparbufferlinux();
 		scanf("%d/%d/%d", &x.dia, &x.mes, &x.ano);
 		limparTela();
 	}
@@ -197,12 +197,12 @@ struct paciente cadastro(struct paciente x){
   
 	return x;
 }
-//Rotina 2 do menu do algoritmo responsavel por informar todos os cadastro j· incluidos no sistema por ordem de cadastro.
+//Rotina 2 do menu do algoritmo responsavel por informar todos os cadastro j√° incluidos no sistema por ordem de cadastro.
 void listarAplicacao(void){
 	int i=0;
 	if(banco[i].numeroDoLote != 0){
 		do{
-			printf("CÛdigo: %d\n", i+1);
+			printf("C√≥digo: %d\n", i+1);
 			printf("Nome: %s\n", banco[i].nome);
 			printf("CPF: %s\n", banco[i].cpf);
 			printf("Vacina: %s\n", banco[i].vacina);
@@ -212,10 +212,10 @@ void listarAplicacao(void){
 			i++;
 		}while(strlen(banco[i].nome)!=0 );
   	}else{
-    	printf("Ainda n„o possue aplicaÁıes de vacinas cadastradas\n");
+    	printf("Ainda n√£o possue aplica√ß√µes de vacinas cadastradas\n");
 		}
 	}
-//Rotina 3 do menu do algoritmo respons·vel por fazer uma consulta no banco do cÛdigo usando o cpf, caso tenha cadastrado o cpf de entrada. Se n„o tiver, informarei ao usuario.
+//Rotina 3 do menu do algoritmo respons√°vel por fazer uma consulta no banco do c√≥digo usando o cpf, caso tenha cadastrado o cpf de entrada. Se n√£o tiver, informarei ao usuario.
 void consultaCpf(void){
 	int i=0;
 	char compar[15], compare[17]="123.123.123-12";
@@ -224,7 +224,7 @@ void consultaCpf(void){
 	limparbufferlinux();
 	gets(compar);
 	limparbuffer();
-	//Daqui atÈ o fim da terceira estrutura de repetiÁ„o while, tentei minimizar possiveis bugs que o algoritmo cometesse.
+	//Daqui at√© o fim da terceira estrutura de repeti√ß√£o while, tentei minimizar possiveis bugs que o algoritmo cometesse.
 	while(compar[3]!=compare[3] || strlen(compar)>14){
 		printf("Escreva o cpf com os pontos corretos, modelo aceito pelo sistema(###.###.###-##)\n");
 		printf("Digite o CPF de busca:\n");
@@ -249,13 +249,13 @@ void consultaCpf(void){
 		limparbuffer();
 		limparTela();
 	}
-	//Daqui atÈ o final da funÁ„o, vou vasculhar o vetor de struct global usado como banco e ver se o cpf de entrada do usuario j· foi cadastrado.
+	//Daqui at√© o final da fun√ß√£o, vou vasculhar o vetor de struct global usado como banco e ver se o cpf de entrada do usuario j√° foi cadastrado.
 	for(i=0;i<99999 && valid1 == true;i++){
 		if(strcmp(compar, banco[i].cpf)==0 && valid1 == true){
 			printf("+++++++++++++++++++++++++++++\n");
-			printf("CPF J¡ CADASTRADO!\n");
+			printf("CPF J√Å CADASTRADO!\n");
 			printf("+++++++++++++++++++++++++++++\n");
-			printf("CÛdigo: %d\n", i+1);
+			printf("C√≥digo: %d\n", i+1);
 			printf("Nome: %s\n", banco[i].nome);
 			printf("CPF: %s\n", banco[i].cpf);
 			printf("Vacina: %s\n", banco[i].vacina);
@@ -266,7 +266,7 @@ void consultaCpf(void){
 	}
 	if(valid1 == true){
 		printf("+++++++++++++++++++++++++++++\n");
-		printf("CPF N√O ENCONTRADO!\n");
+		printf("CPF N√ÉO ENCONTRADO!\n");
 		printf("+++++++++++++++++++++++++++++\n");
 	}
 }
