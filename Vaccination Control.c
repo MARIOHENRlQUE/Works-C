@@ -1,22 +1,66 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include <math.h>
 #include <stdbool.h>
 #include <locale.h>
 #include <string.h>
-
-//Criei struct primaria
-struct paciente{
-	char nome[100];
-	char cpf[17];
-	char vacina[20];
-	int dia, mes, ano;
-	int numeroDoLote;
-};
 //Struct que serve como banco de dados global do algoritmo.
+struct paciente{
+	char nome[100], cpf[17], vacina[20];
+	int dia, mes, ano, numeroDoLote;
+};
 struct paciente banco[99999];
-//Limpando buffers do banco.
+void limparBufferDoBanco(void);
+void limparTela(void);
+void limparbuffer(void);
+void limparbufferlinux(void);
+int criandoMenu(int);
+struct paciente cadastro(struct paciente);
+void listarAplicacao(void);
+void consultaCpf(void);
+
+void main(){
+	setlocale(LC_ALL, "Portuguese");
+	struct paciente pacientes;
+	int valid=0, i=0;
+	bool valid2 = true, valid3 = true;
+	limparBufferDoBanco();
+  limparTela();
+	printf("========================CONTROLE DA VACINAÇÃO========================\n");
+	do{
+		if(valid2 == false){
+			printf("\n");
+			printf("\n");
+		}
+		valid = criandoMenu(valid);
+		switch(valid){
+			case 1:
+				limparTela();
+				banco[i] = cadastro(pacientes);
+				i++;
+			break;
+			case 2:
+				limparTela();
+				listarAplicacao();
+			break;
+			case 3:
+				limparTela();
+				consultaCpf();
+			break;
+			default:
+				limparTela();
+				printf("Os comandos validos no menu são apenas (1)(2)(3)(4)\n");
+				valid3 = false;
+    	}
+		valid2 = false;
+	//Condição criada para que o usuario não digite outras telas sem ser o 1,2,3,4 no menu do algoritmo.
+	}while(valid!=4 || valid3 == true);
+	if(valid==4){
+		limparTela();
+		printf("========================SISTEMA ENCERRADO!========================\n");
+	}
+}
+// Procedimento limpar buffers do banco.
 void limparBufferDoBanco(void){
 	int i=0;
 	for(i=0;i<99999;i++){
@@ -127,13 +171,13 @@ struct paciente cadastro(struct paciente x){
 		}
 	}
 	printf("Digite o nome da Vacina:\n");
-  limparbufferlinux();
+	limparbufferlinux();
 	scanf("%s", x.vacina);
 	limparbuffer();
 	printf("\n");
 	//Informei ao sistema que queria receber as datas e após receber, já armazenar elas com as barras.
 	printf("Digite a data atual(Em formato MM/DD/AAAA):\n");
-  limparbufferlinux();
+	limparbufferlinux();
 	scanf("%d/%d/%d", &x.dia, &x.mes, &x.ano);
 	limparbuffer();
 	while(x.mes>12 || x.mes==0 || x.dia>31 || x.dia==0 || x.ano==0){
@@ -145,7 +189,7 @@ struct paciente cadastro(struct paciente x){
 	}
 	printf("\n");
 	printf("Digite o numero do lote:\n");
-  limparbufferlinux();
+	limparbufferlinux();
 	scanf("%d", &x.numeroDoLote);
 	limparbuffer();
 	printf("\n");
@@ -177,14 +221,14 @@ void consultaCpf(void){
 	char compar[15], compare[17]="123.123.123-12";
 	bool valid1 = true, valid2 = true;
 	printf("Digite o CPF de busca:\n");
-  limparbufferlinux();
+	limparbufferlinux();
 	gets(compar);
 	limparbuffer();
 	//Daqui até o fim da terceira estrutura de repetição while, tentei minimizar possiveis bugs que o algoritmo cometesse.
 	while(compar[3]!=compare[3] || strlen(compar)>14){
 		printf("Escreva o cpf com os pontos corretos, modelo aceito pelo sistema(###.###.###-##)\n");
 		printf("Digite o CPF de busca:\n");
-    limparbufferlinux();
+		limparbufferlinux();
 		gets(compar);
 		limparbuffer();
 		limparTela();
@@ -192,7 +236,7 @@ void consultaCpf(void){
 	while(compar[7]!=compare[7] || strlen(compar)>14){
 		printf("Escreva o cpf com os pontos corretos, modelo aceito pelo sistema(###.###.###-##)\n");
 		printf("Digite o CPF de busca:\n");
-    limparbufferlinux();
+		limparbufferlinux();
 		gets(compar);
 		limparbuffer();
 		limparTela();
@@ -200,7 +244,7 @@ void consultaCpf(void){
 	while(compar[11]!=compare[11] || strlen(compar)>14){
 		printf("Escreva o cpf com os pontos corretos, modelo aceito pelo sistema(###.###.###-##)\n");
 		printf("Digite o CPF de busca:\n");
-    limparbufferlinux();
+		limparbufferlinux();
 		gets(compar);
 		limparbuffer();
 		limparTela();
@@ -211,7 +255,7 @@ void consultaCpf(void){
 			printf("+++++++++++++++++++++++++++++\n");
 			printf("CPF JÁ CADASTRADO!\n");
 			printf("+++++++++++++++++++++++++++++\n");
-			printf("Código: %d\n", i);
+			printf("Código: %d\n", i+1);
 			printf("Nome: %s\n", banco[i].nome);
 			printf("CPF: %s\n", banco[i].cpf);
 			printf("Vacina: %s\n", banco[i].vacina);
@@ -226,44 +270,4 @@ void consultaCpf(void){
 		printf("+++++++++++++++++++++++++++++\n");
 	}
 }
-void main(){
-	setlocale(LC_ALL, "Portuguese");
-	struct paciente pacientes;
-	int valid=0, i=0;
-	bool valid2 = true, valid3 = true;
-	limparBufferDoBanco();
-  limparTela();
-	printf("========================CONTROLE DA VACINAÇÃO========================\n");
-	do{
-		if(valid2 == false){
-			printf("\n");
-			printf("\n");
-		}
-		valid = criandoMenu(valid);
-		switch(valid){
-			case 1:
-				limparTela();
-				banco[i] = cadastro(pacientes);
-				i++;
-			break;
-			case 2:
-				limparTela();
-				listarAplicacao();
-			break;
-			case 3:
-				limparTela();
-				consultaCpf();
-			break;
-			default:
-				limparTela();
-				printf("Os comandos validos no menu são apenas (1)(2)(3)(4)\n");
-				valid3 = false;
-    	}
-		valid2 = false;
-	//Condição criada para que o usuario não digite outras telas sem ser o 1,2,3,4 no menu do algoritmo.
-	}while(valid!=4 || valid3 == true);
-	if(valid==4){
-		limparTela();
-		printf("========================SISTEMA ENCERRADO!========================\n");
-	}
-}
+
